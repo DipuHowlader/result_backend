@@ -27,7 +27,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["https://aqueous-citadel-50825.herokuapp.com"]
 
 # CORS_ALLOWED_ORIGINS = [
 # "http://127.0.0.1:5500",
