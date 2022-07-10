@@ -13,7 +13,8 @@ class ResultsView(APIView):
     def get(self, request, pk, format=None):
         try:
             subjects = []
-            instance = StudentModel.objects.get(roll=pk)
+            print()
+            instance = StudentModel.objects.get(roll='178871')
             if instance.failed_subjects is not None:
                 failed_subjects = list(instance.failed_subjects)
                 for item in failed_subjects:
