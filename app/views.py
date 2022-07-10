@@ -1,14 +1,10 @@
-from http.client import NOT_FOUND
-from django.shortcuts import render
 from rest_framework.permissions import AllowAny
-from django.views import View
 from rest_framework.views import APIView
 from .serializer import ResultSerializer
 from .models import StudentModel, SubjectsModel
 from rest_framework.response import Response
 from rest_framework import status
 
-# Create your views here.
 
 
 class ResultsView(APIView):
@@ -27,7 +23,6 @@ class ResultsView(APIView):
                     else:
                         subjects.append(sub_instance.code)
         except UnboundLocalError:
-            raise NOT_FOUND('This Roll number does not exist.')
             return Response({"error" : "This Roll number does not exist."}, status=status.HTTP_404_NOT_FOUND)
         except:
             return Response({"error" : "This server is on a business trip"}, status=status.HTTP_404_NOT_FOUND)
