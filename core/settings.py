@@ -28,7 +28,7 @@ print(os.environ.get("MONGODB_URI"))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["https://aqueous-citadel-50825.herokuapp.com"]
+ALLOWED_HOSTS = ["https://aqueous-citadel-50825.herokuapp.com", "*"]
 
 # CORS_ALLOWED_ORIGINS = [
 # "http://127.0.0.1:5500",
