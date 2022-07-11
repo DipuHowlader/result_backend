@@ -20,7 +20,8 @@ class ResultsView(APIView):
                     try:
                         sub_instance = SubjectsModel.objects.filter(code=item)[0]
                     except:
-                        sub_instance = SubjectsModel.objects.filter(code=item)
+                        sub_instance = SubjectsModel.objects.get(code=item)
+                    print(sub_instance)
                     if sub_instance.name:
                         subjects.append(sub_instance.name)
                     else:
