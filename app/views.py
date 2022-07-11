@@ -13,7 +13,6 @@ class ResultsView(APIView):
     def get(self, request, pk, format=None):
         try:
             subjects = []
-            print(StudentModel)
             instance = StudentModel.objects.get(roll=pk)
             if instance.failed_subjects is not None:
                 failed_subjects = list(instance.failed_subjects)
@@ -25,8 +24,8 @@ class ResultsView(APIView):
                         subjects.append(sub_instance.code)
         except UnboundLocalError:
             return Response({"error" : "This Roll number does not exist."}, status=status.HTTP_404_NOT_FOUND)
-        # except:
-            # return Response({"error" : "This server is on a business trip"}, status=status.HTTP_404_NOT_FOUND)
+        except:
+            return Response({"error" : "This server is on a business trip"}, status=status.HTTP_404_NOT_FOUND)
 
         serializer = ResultSerializer(instance)
         return Response({"data": serializer.data, "sub": subjects}, status=status.HTTP_201_CREATED)
