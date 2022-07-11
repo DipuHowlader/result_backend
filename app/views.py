@@ -28,7 +28,8 @@ class ResultsView(APIView):
         except UnboundLocalError:
             return Response({"error" : "This Roll number does not exist."}, status=status.HTTP_404_NOT_FOUND)
         except:
-            return Response({"error" : "This server is on a business trip"}, status=status.HTTP_404_NOT_FOUND)
+            pass
+            # return Response({"error" : "This server is on a business trip"}, status=status.HTTP_404_NOT_FOUND)
 
         serializer = ResultSerializer(instance)
         return Response({"data": serializer.data, "sub": subjects}, status=status.HTTP_201_CREATED)
