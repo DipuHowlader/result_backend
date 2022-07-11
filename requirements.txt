@@ -12,6 +12,7 @@ psycopg2==2.9.3
 pycodestyle==2.8.0
 pymongo==3.12.3
 pytz==2022.1
+sqlparse==0.2.4
 toml==0.10.2
 tzdata==2022.1
 whitenoise==6.2.0
