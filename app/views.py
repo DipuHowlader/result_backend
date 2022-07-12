@@ -22,15 +22,14 @@ class ResultsView(APIView):
                         sub_instance = SubjectsModel.objects.filter(code=item)[0]
                     except:
                         sub_instance = SubjectsModel.objects.get(code=item)
-                    print(sub_instance)
                     if sub_instance.name:
                         subjects.append(sub_instance.name)
                     else:
                         subjects.append(sub_instance.code)
+                    print(subjects)
         except UnboundLocalError:
             return Response({"error" : "This Roll number does not exist."}, status=status.HTTP_404_NOT_FOUND)
-        except:
-            pass
+       
             # return Response({"error" : "This server is on a business trip"}, status=status.HTTP_404_NOT_FOUND)
 
         serializer = ResultSerializer(instance)
