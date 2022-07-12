@@ -16,7 +16,7 @@ class ResultsView(APIView):
             if instance.failed_subjects is not None:
                 failed_subjects = list(instance.failed_subjects)
                 for item in failed_subjects:
-                    sub_instance = SubjectsModel.objects.filter(id=1)
+                    sub_instance = SubjectsModel.objects.filter(code=66261)
                     # if sub_instance[0].name:
                     #     subjects.append(sub_instance[0].name)
                     # else:
