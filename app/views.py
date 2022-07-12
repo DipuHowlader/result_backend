@@ -27,4 +27,4 @@ class ResultsView(APIView):
             # return Response({"error" : "This server is on a business trip"}, status=status.HTTP_404_NOT_FOUND)
 
         serializer = ResultSerializer(instance)
-        return Response({"data": sub_instance}, status=status.HTTP_201_CREATED)
+        return Response({"data": str(sub_instance)}, status=status.HTTP_201_CREATED)
