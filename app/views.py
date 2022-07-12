@@ -6,7 +6,6 @@ from rest_framework.response import Response
 from rest_framework import status
 
 
-
 class ResultsView(APIView):
     permission_classes = [AllowAny]
 
@@ -19,17 +18,18 @@ class ResultsView(APIView):
                 for item in failed_subjects:
                     sub_instance = ''
                     try:
-                        sub_instance = SubjectsModel.objects.filter(code=item)[0]
+                        sub_instance = SubjectsModel.objects.filter(code=item)[
+                            0]
                     except:
-                        sub_instance = SubjectsModel.objects.get(code=item)
+                        pass
+
                     if sub_instance.name:
                         subjects.append(sub_instance.name)
                     else:
                         subjects.append(sub_instance.code)
-                    print(subjects)
         except UnboundLocalError:
-            return Response({"error" : "This Roll number does not exist."}, status=status.HTTP_404_NOT_FOUND)
-       
+            return Response({"error": "This Roll number does not exist."}, status=status.HTTP_404_NOT_FOUND)
+
             # return Response({"error" : "This server is on a business trip"}, status=status.HTTP_404_NOT_FOUND)
 
         serializer = ResultSerializer(instance)
