@@ -16,7 +16,7 @@ class ResultsView(APIView):
             if instance.failed_subjects is not None:
                 failed_subjects = list(instance.failed_subjects)
                 for item in failed_subjects:
-                    sub_instance = SubjectsModel.objects.filter(code=item)[0]
+                    sub_instance = SubjectsModel.objects.filter(code=item)
                     if sub_instance.name:
                         subjects.append(sub_instance.name)
                     else:
@@ -27,4 +27,4 @@ class ResultsView(APIView):
             # return Response({"error" : "This server is on a business trip"}, status=status.HTTP_404_NOT_FOUND)
 
         serializer = ResultSerializer(instance)
-        return Response({"data": serializer.data, "sub": subjects}, status=status.HTTP_201_CREATED)
+        return Response({"data": sub_instance}, status=status.HTTP_201_CREATED)
