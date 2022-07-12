@@ -16,17 +16,11 @@ class ResultsView(APIView):
             if instance.failed_subjects is not None:
                 failed_subjects = list(instance.failed_subjects)
                 for item in failed_subjects:
-                    print(SubjectsModel.objects.filter(code=item))
-                    sub_instance = ''
-                    try:
-                        sub_instance = SubjectsModel.objects.filter(code=item)[
-                            0]
-                        if sub_instance.name:
-                            subjects.append(sub_instance.name)
-                        else:
-                            subjects.append(sub_instance.code)
-                    except:
-                        pass
+                    sub_instance = SubjectsModel.objects.filter(code=item)[0]
+                    if sub_instance.name:
+                        subjects.append(sub_instance.name)
+                    else:
+                        subjects.append(sub_instance.code)
         except UnboundLocalError:
             return Response({"error": "This Roll number does not exist."}, status=status.HTTP_404_NOT_FOUND)
 
