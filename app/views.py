@@ -17,8 +17,8 @@ class ResultsView(APIView):
                 failed_subjects = list(instance.failed_subjects)
                 for item in failed_subjects:
                     sub_instance = SubjectsModel.objects.filter(code=item)
-                    if sub_instance.name:
-                        subjects.append(sub_instance.name)
+                    if sub_instance[0].name:
+                        subjects.append(sub_instance[0].name)
                     else:
                         subjects.append(sub_instance.code)
         except UnboundLocalError:
