@@ -16,17 +16,16 @@ class ResultsView(APIView):
             if instance.failed_subjects is not None:
                 failed_subjects = list(instance.failed_subjects)
                 for item in failed_subjects:
-                    sub_instance = SubjectsModel.objects.filter(code=item)
-                    if type(sub_instance) is list:
-                        sub_instance = SubjectsModel.objects.filter(code=item)[0]
-                    if sub_instance[0].name:
-                        subjects.append(sub_instance[0].name)
+                    sub_instance = SubjectsModel.objects.filter(code=item).first()
+                    if sub_instance.name:
+                        subjects.append(sub_instance.name)
                     else:
                         subjects.append(sub_instance.code)
+
         except UnboundLocalError:
             return Response({"error": "This Roll number does not exist."}, status=status.HTTP_404_NOT_FOUND)
-
-            # return Response({"error" : "This server is on a business trip"}, status=status.HTTP_404_NOT_FOUND)
+        # except:     
+        #     return Response({"error" : "This server is on a business trip"}, status=status.HTTP_404_NOT_FOUND)
 
         serializer = ResultSerializer(instance)
         return Response({"data": serializer.data, "sub": subjects }, status=status.HTTP_201_CREATED)
