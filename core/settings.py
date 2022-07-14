@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import django_heroku
+import dj_database_url
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -48,8 +49,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-     'rest_framework',
-     'corsheaders',
+    'rest_framework',
+    'corsheaders',
 ]
 
 # SITE_ID = 1
@@ -91,7 +92,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 
 DATABASES = {
-        'default': {
+    'default': {
             'ENGINE': 'djongo',
             'ENFORCE_SCHEMA': False,
             'CLIENT': {
@@ -99,6 +100,8 @@ DATABASES = {
             }  
         }
 }
+
+DATABASES['default'].update(default=os.environ.get("MONGODB_URI"))
 
 
 # Password validation
